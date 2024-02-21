@@ -26,6 +26,11 @@ Installing and making sure classdata is up to date
 
 Question 1)
 
+inspect the first few lines of the data set:
+
+- what variables are there? of what type are the variables? what does
+  each variable mean? what do we expect their data range to be?
+
 ``` r
 head(ames)
 ```
@@ -109,7 +114,7 @@ Occupancy, Sale Date, Sale Price, Multi Sale, Year Built, Acres, Total
 Living Area, Bedrooms, Finished Basement Area, Lot Area, AC, Fireplace,
 Neighborhood.
 
-Variable Type:
+**Variable Type:**
 
 Parcel ID: Character
 
@@ -142,3 +147,53 @@ AC: Character
 Fireplace: Character
 
 Neighborhood: Factor
+
+**Meaning of Variable:**
+
+Parcel ID:  
+character with ID.
+
+Address:  
+property address in Ames, IA.
+
+Style:  
+factor variable detailing the type of housing.
+
+Occupancy:  
+factor variable of type of housing.
+
+Sale Date:  
+date of sale.
+
+Sale Price:  
+sales price (in US dollar).
+
+Multi Sale:  
+logical value: was this sale part of a package?
+
+YearBuilt:  
+integer value: year in which the house was built.
+
+Acres:  
+acres of the lot.
+
+TotalLivingArea (sf):  
+total living area in square feet.
+
+Bedrooms:  
+number of bedrooms.
+
+FinishedBsmtArea (sf):  
+total area of the finished basement in square feet.
+
+LotArea(sf):  
+total lot area in square feet.
+
+AC:  
+logical value: does the property have an AC?
+
+FirePlace:  
+logical value: does the property have an fireplace?
+
+Neighborhood:  
+factor variable - levels indicate neighborhood area in Ames.
