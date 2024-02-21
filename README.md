@@ -268,7 +268,7 @@ print(range(Acres))
 
 ``` r
 ggplot(ames1, aes(x = Acres, y = SalePrice)) +
-  geom_point() +
+  geom_point(size = 3, alpha = 0.8) +
   labs(title = "Scatterplot of Sale Price against Related Variable",
        x = "Acres",
        y = "Sale Price",
