@@ -16,29 +16,51 @@ Include your answers in this document (Rmd file). Make sure that it knits proper
 
 All submissions to the github repo will be automatically uploaded for grading once the due date is passed. Submit a link to your repository on Canvas (only one submission per team) to signal to the instructors that you are done with your submission.
 
+
+
 ```{r}
 #remotes::install_github("heike/classdata")
 library(classdata)
-library(ggplot2)
 
 ```
-
-Installing and making sure classdata is up to date
-
-**Question 1)**
-
-**inspect the first few lines of the data set:**
-
--   **what variables are there? of what type are the variables? what does each variable mean? what do we expect their data range to be?**
 
 ```{r}
 head(ames)
-summary(ames)
 ```
 
-There are 16 variables and they include: Parcel ID, Address, Style, Occupancy, Sale Date, Sale Price, Multi Sale, Year Built, Acres, Total Living Area, Bedrooms, Finished Basement Area, Lot Area, AC, Fireplace, Neighborhood.
+There are 16 variables in the Ames data set. Some variables are categorical and others are numerical.
 
-**Variable Type:**
+```{r}
+str(ames)
+```
+
+  
+```{r}
+library(ggplot2)
+ames
+View(ames)
+library(tidyverse)
+
+str(ames)
+
+
+ames_filtered <- ames %>%
+  filter(YearBuilt >= 1880 & YearBuilt <= 2022)
+  
+View(ames_filtered)
+  
+ggplot(ames_filtered, aes(x = YearBuilt, y = `Sale Price`)) +
+  geom_histogram(stat = "identity", fill = "blue", alpha = 0.7) +  
+  labs(title = "Histogram: Sale Price vs Year Built",
+       x = "Year Built",
+       y = "Sale Price") +
+```
+
+
+```{r}
+theme_minimal()
+```
+  
 
 Parcel ID: Character
 
@@ -170,6 +192,7 @@ ggplot(ames, aes(x = `Sale Price`)) +
 
 There is a lot of variance and a few outliners as there is large cluster near the y axis and a few outliers as you move right.
 
+
 **Question 4)**
 
 **pick a variable that might be related to the main variable.**
@@ -194,4 +217,36 @@ ggplot(data = ames, aes(x = factor(`Bedrooms`) , y = `Sale Price`)) +
   geom_boxplot()
 ```
 
-This box-plot shows that there is not a large correlation between number of bedrooms and sale price. It would likely be better if it was included as a variable in a multiple linear regression to identify how exactly it impacts (or doesn't) impact sale price.
+This box-plot shows that there is not a large correlation between number of bedrooms and sale price. It would likely be better if it was included as a variable in a multiple linear regression to identify how exactly it impacts (or doesn't) impact sale price. This is likely because other factors have a more signifcant impact on the sale price.
+
+
+```{r}
+#Ryan Riebesehl- I chose Acres
+remotes::install_github('heike/classdata')
+library(classdata)
+head(ames)
+```
+
+```{r}
+
+#Ryan Riebesehl- I chose Acres:
+
+library(ggplot2)
+ames1 <- na.omit(ames)
+Acres <- ames1$Acres
+SalePrice <- ames1$`Sale Price`
+print(range(Acres))
+
+ggplot(ames1, aes(x = Acres, y = SalePrice)) +
+  geom_point(size = 3, alpha = 0.8) +
+  labs(title = "Scatterplot of Sale Price against Related Variable",
+       x = "Acres",
+       y = "Sale Price",
+       color = "Category") +
+  theme_minimal()
+```
+
+
+\^Based on the scatter plot to see differences between Acres and Sales Price, you can see a slight trend that houses with small acres have an expensive sales price. This is the same for houses with large amounts Acres. This is probably because houses near the downtown city of Ames tend to be more expensive. Additionally, large acres of land will usually cost more money. There are some oddities in the graph as some price have not been updated. -Ryan Riebesehl
+
+
