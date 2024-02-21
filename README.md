@@ -18,13 +18,7 @@ Canvas (only one submission per team) to signal to the instructors that
 you are done with your submission.
 
 ``` r
-remotes::install_github("heike/classdata")
-```
-
-    ## Skipping install of 'classdata' from a github remote, the SHA1 (1faa8961) has not changed since last install.
-    ##   Use `force = TRUE` to force installation
-
-``` r
+#remotes::install_github("heike/classdata")
 library(classdata)
 ```
 
