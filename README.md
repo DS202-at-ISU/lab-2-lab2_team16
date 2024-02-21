@@ -678,7 +678,6 @@ ggplot(ames, aes(x = `Sale Price`)) +
 There is a lot of variance and a few outliners as there is large cluster
 near the y axis and a few outliers as you move right.
 
-<<<<<<< HEAD
 **Question 4)**
 
 **pick a variable that might be related to the main variable.**
@@ -715,7 +714,16 @@ The range of Bedrooms is 10.
 ``` r
 ggplot(data = ames, aes(x = factor(`Bedrooms`) , y = `Sale Price`)) +
   geom_boxplot()
-=======
+```
+
+![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+
+This box-plot shows that there is not a large correlation between number
+of bedrooms and sale price. It would likely be better if it was included
+as a variable in a multiple linear regression to identify how exactly it
+impacts (or doesn’t) impact sale price. This is likely because other
+factors have a more signifcant impact on the sale price.
+
 ``` r
 #Ryan Riebesehl- I chose Acres
 # remotes::install_github('heike/classdata')
@@ -757,17 +765,10 @@ ggplot(ames1, aes(x = Acres, y = SalePrice)) +
        y = "Sale Price",
        color = "Category") +
   theme_minimal()
->>>>>>> 2a76882ef6a993c0f7f56db3eb406da4977b5996
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
-<<<<<<< HEAD
-This box-plot shows that there is not a large correlation between number
-of bedrooms and sale price. It would likely be better if it was included
-as a variable in a multiple linear regression to identify how exactly it
-impacts (or doesn’t) impact sale price.
-=======
 ^Based on the scatter plot to see differences between Acres and Sales
 Price, you can see a slight trend that houses with small acres have an
 expensive sales price. This is the same for houses with large amounts
@@ -775,4 +776,3 @@ Acres. This is probably because houses near the downtown city of Ames
 tend to be more expensive. Additionally, large acres of land will
 usually cost more money. There are some oddities in the graph as some
 price have not been updated. -Ryan Riebesehl
->>>>>>> 2a76882ef6a993c0f7f56db3eb406da4977b5996
