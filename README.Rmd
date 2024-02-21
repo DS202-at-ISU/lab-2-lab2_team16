@@ -19,16 +19,17 @@ All submissions to the github repo will be automatically uploaded for grading on
 ```{r}
 #remotes::install_github("heike/classdata")
 library(classdata)
+library(ggplot2)
 
 ```
 
 Installing and making sure classdata is up to date
 
-Question 1)
+**Question 1)**
 
-inspect the first few lines of the data set:
+**inspect the first few lines of the data set:**
 
--   what variables are there? of what type are the variables? what does each variable mean? what do we expect their data range to be?
+-   **what variables are there? of what type are the variables? what does each variable mean? what do we expect their data range to be?**
 
 ```{r}
 head(ames)
@@ -141,6 +142,28 @@ Neighborhood:
 
 This can be found in the summary output by subtracting the minimum from the maximum values for each applicable variable (some variable types do not have a range) in the summary output.
 
-```{r}
+**Question 2)**
 
+**is there a variable of special interest or focus?**
+
+The special variable of focus is the sale price of the house/condo/apartment in USD.
+
+**Question 3)**
+
+**start the exploration with the main variable:**
+
+-   **what is the range of the variable? draw a histogram for a numeric variable or a bar chart, if the variable is categorical. what is the general pattern? is there anything odd?**
+
+-   **follow-up on oddities: see 4**
+
+```{r}
+max(ames$`Sale Price`,na.rm=TRUE)-min(ames$`Sale Price`,na.rm=TRUE)
+```
+
+The range for the sale price is 20500000 USD.
+
+```{r}
+ggplot(ames, aes(x = `Sale Price`)) + 
+  geom_histogram() +
+  ggtitle("Sale Price")
 ```
