@@ -16,11 +16,10 @@ Include your answers in this document (Rmd file). Make sure that it knits proper
 
 All submissions to the github repo will be automatically uploaded for grading once the due date is passed. Submit a link to your repository on Canvas (only one submission per team) to signal to the instructors that you are done with your submission.
 
-
-
 ```{r}
 #remotes::install_github("heike/classdata")
 library(classdata)
+library(ggplot2)
 
 ```
 
@@ -34,33 +33,7 @@ There are 16 variables in the Ames data set. Some variables are categorical and 
 str(ames)
 ```
 
-  
-```{r}
-library(ggplot2)
-ames
-# View(ames)
-library(tidyverse)
-
-str(ames)
-
-
-ames_filtered <- ames %>%
-  filter(YearBuilt >= 1880 & YearBuilt <= 2022)
-  
-# View(ames_filtered)
-  
-ggplot(ames_filtered, aes(x = YearBuilt, y = `Sale Price`)) +
-  geom_histogram(stat = "identity", fill = "blue", alpha = 0.7) +  
-  labs(title = "Histogram: Sale Price vs Year Built",
-       x = "Year Built",
-       y = "Sale Price")
-```
-
-
-```{r}
-theme_minimal()
-```
-  
+**Variable Type:**
 
 Parcel ID: Character
 
@@ -190,8 +163,7 @@ ggplot(ames, aes(x = `Sale Price`)) +
   ggtitle("Sale Price")
 ```
 
-There is a lot of variance and a few outliners as there is large cluster near the y axis and a few outliers as you move right.
-
+There is a lot of variance and a few outliers as there is large cluster near the y axis and a few outliers as you move right.
 
 **Question 4)**
 
@@ -204,6 +176,7 @@ There is a lot of variance and a few outliners as there is large cluster near th
 **Cassie Bedrooms:**
 
 ```{r}
+
 max(ames$`Bedrooms`,na.rm=TRUE)-min(ames$`Bedrooms`,na.rm=TRUE)
 max(ames$`Bedrooms`,na.rm=TRUE)
 min(ames$`Bedrooms`,na.rm=TRUE)
@@ -218,7 +191,6 @@ ggplot(data = ames, aes(x = factor(`Bedrooms`) , y = `Sale Price`)) +
 ```
 
 This box-plot shows that there is not a large correlation between number of bedrooms and sale price. It would likely be better if it was included as a variable in a multiple linear regression to identify how exactly it impacts (or doesn't) impact sale price. This is likely because other factors have a more signifcant impact on the sale price.
-
 
 ```{r}
 #Ryan Riebesehl- I chose Acres
@@ -246,7 +218,32 @@ ggplot(ames1, aes(x = Acres, y = SalePrice)) +
   theme_minimal()
 ```
 
-
 \^Based on the scatter plot to see differences between Acres and Sales Price, you can see a slight trend that houses with small acres have an expensive sales price. This is the same for houses with large amounts Acres. This is probably because houses near the downtown city of Ames tend to be more expensive. Additionally, large acres of land will usually cost more money. There are some oddities in the graph as some price have not been updated. -Ryan Riebesehl
 
+```{r}
+library(ggplot2)
+ames
+# View(ames)
+library(tidyverse)
 
+str(ames)
+
+
+ames_filtered <- ames %>%
+  filter(YearBuilt >= 1880 & YearBuilt <= 2022)
+  
+# View(ames_filtered)
+  
+ggplot(ames_filtered, aes(x = YearBuilt, y = `Sale Price`)) +
+  geom_histogram(stat = "identity", fill = "blue", alpha = 0.7) +  
+  labs(title = "Histogram: Sale Price vs Year Built",
+       x = "Year Built",
+       y = "Sale Price") + 
+  theme_minimal()
+```
+
+```{r}
+
+```
+
+Based on this graph we can conclude that the year built has a significant impact on the sales price as the higher sale prices come more around the year 2000 as opposed to lower ones prior and into the near future. \~Connor Boysen
