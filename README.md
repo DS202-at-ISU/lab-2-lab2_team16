@@ -224,3 +224,6 @@ ggplot(ames, aes(x = `Sale Price`)) +
     ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
 ![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+
+There is a lot of variance and a few outliners as there is large cluster
+near the y axis and a few outliers as you move right.

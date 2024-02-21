@@ -167,3 +167,5 @@ ggplot(ames, aes(x = `Sale Price`)) +
   geom_histogram() +
   ggtitle("Sale Price")
 ```
+
+There is a lot of variance and a few outliners as there is large cluster near the y axis and a few outliers as you move right.
