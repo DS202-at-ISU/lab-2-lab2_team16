@@ -38,7 +38,7 @@ str(ames)
 ```{r}
 library(ggplot2)
 ames
-View(ames)
+# View(ames)
 library(tidyverse)
 
 str(ames)
@@ -47,13 +47,13 @@ str(ames)
 ames_filtered <- ames %>%
   filter(YearBuilt >= 1880 & YearBuilt <= 2022)
   
-View(ames_filtered)
+# View(ames_filtered)
   
 ggplot(ames_filtered, aes(x = YearBuilt, y = `Sale Price`)) +
   geom_histogram(stat = "identity", fill = "blue", alpha = 0.7) +  
   labs(title = "Histogram: Sale Price vs Year Built",
        x = "Year Built",
-       y = "Sale Price") +
+       y = "Sale Price")
 ```
 
 
@@ -222,7 +222,7 @@ This box-plot shows that there is not a large correlation between number of bedr
 
 ```{r}
 #Ryan Riebesehl- I chose Acres
-remotes::install_github('heike/classdata')
+# remotes::install_github('heike/classdata')
 library(classdata)
 head(ames)
 ```
