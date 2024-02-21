@@ -202,6 +202,7 @@ head(ames)
 ```{r}
 
 #Ryan Riebesehl- I chose Acres:
+
 library(ggplot2)
 ames1 <- na.omit(ames)
 Acres <- ames1$Acres
@@ -217,5 +218,6 @@ ggplot(ames1, aes(x = Acres, y = SalePrice)) +
   theme_minimal()
 ```
 
-\^Based on the scatter plot to see differences between Acres and Sales Price, you can see a slight trend that houses with small acres have an expensive sales price. This is the same for houses with large amounts Acres. This is probably because houses near the downtown city of Ames tend to be more expensive. Additionally, large acres of land will usually cost more money. There are some oddities in the graph as some price have not been updated.
+
+\^Based on the scatter plot to see differences between Acres and Sales Price, you can see a slight trend that houses with small acres have an expensive sales price. This is the same for houses with large amounts Acres. This is probably because houses near the downtown city of Ames tend to be more expensive. Additionally, large acres of land will usually cost more money. There are some oddities in the graph as some price have not been updated. -Ryan Riebesehl
 
