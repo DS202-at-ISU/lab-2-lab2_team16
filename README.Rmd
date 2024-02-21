@@ -16,154 +16,37 @@ Include your answers in this document (Rmd file). Make sure that it knits proper
 
 All submissions to the github repo will be automatically uploaded for grading once the due date is passed. Submit a link to your repository on Canvas (only one submission per team) to signal to the instructors that you are done with your submission.
 
+
+
 ```{r}
 #remotes::install_github("heike/classdata")
 library(classdata)
-library(ggplot2)
 
 ```
-
-Installing and making sure classdata is up to date
-
-**Question 1)**
-
-**inspect the first few lines of the data set:**
-
--   **what variables are there? of what type are the variables? what does each variable mean? what do we expect their data range to be?**
 
 ```{r}
 head(ames)
-summary(ames)
 ```
+str(ames)
+There are 16 variables in the Ames data set. Some variables are categorical and others are numerical.
 
-There are 16 variables and they include: Parcel ID, Address, Style, Occupancy, Sale Date, Sale Price, Multi Sale, Year Built, Acres, Total Living Area, Bedrooms, Finished Basement Area, Lot Area, AC, Fireplace, Neighborhood.
+library(ggplot2)
+ames
+View(ames)
+library(tidyverse)
 
-**Variable Type:**
+str(ames)
 
-Parcel ID: Character
-
-Address: Character
-
-Style: Factor
-
-Occupancy: Factor
-
-Sale Date: Date
-
-Sale Price: Double
-
-Multi Sale: Character
-
-Year Built: Double
-
-Acres: Double
-
-Total Living Area: Double
-
-Bedrooms: Double
-
-Finished Basement Area: Double
-
-Lot Area: Double
-
-AC: Character
-
-Fireplace: Character
-
-Neighborhood: Factor
-
-**Meaning of Variable:**
-
-Parcel ID:
-
-:   character with ID.
-
-Address:
-
-:   property address in Ames, IA.
-
-Style:
-
-:   factor variable detailing the type of housing.
-
-Occupancy:
-
-:   factor variable of type of housing.
-
-Sale Date:
-
-:   date of sale.
-
-Sale Price:
-
-:   sales price (in US dollar).
-
-Multi Sale:
-
-:   logical value: was this sale part of a package?
-
-YearBuilt:
-
-:   integer value: year in which the house was built.
-
-Acres:
-
-:   acres of the lot.
-
-TotalLivingArea (sf):
-
-:   total living area in square feet.
-
-Bedrooms:
-
-:   number of bedrooms.
-
-FinishedBsmtArea (sf):
-
-:   total area of the finished basement in square feet.
-
-LotArea(sf):
-
-:   total lot area in square feet.
-
-AC:
-
-:   logical value: does the property have an AC?
-
-FirePlace:
-
-:   logical value: does the property have an fireplace?
-
-Neighborhood:
-
-:   factor variable - levels indicate neighborhood area in Ames.
-
-**Expected Range:**
-
-This can be found in the summary output by subtracting the minimum from the maximum values for each applicable variable (some variable types do not have a range) in the summary output.
-
-**Question 2)**
-
-**is there a variable of special interest or focus?**
-
-The special variable of focus is the sale price of the house/condo/apartment in USD.
-
-**Question 3)**
-
-**start the exploration with the main variable:**
-
--   **what is the range of the variable? draw a histogram for a numeric variable or a bar chart, if the variable is categorical. what is the general pattern? is there anything odd?**
-
--   **follow-up on oddities: see 4**
-
-```{r}
-max(ames$`Sale Price`,na.rm=TRUE)-min(ames$`Sale Price`,na.rm=TRUE)
-```
-
-The range for the sale price is 20500000 USD.
-
-```{r}
-ggplot(ames, aes(x = `Sale Price`)) + 
-  geom_histogram() +
-  ggtitle("Sale Price")
-```
+ames_filtered <- ames %>%
+  filter(YearBuilt >= 1880 & YearBuilt <= 2022)
+  
+View(ames_filtered)
+  
+ggplot(ames_filtered, aes(x = YearBuilt, y = `Sale Price`)) +
+  geom_histogram(stat = "identity", fill = "blue", alpha = 0.7) +  
+  labs(title = "Histogram: Sale Price vs Year Built",
+       x = "Year Built",
+       y = "Sale Price") +
+  theme_minimal()
+  
+  
