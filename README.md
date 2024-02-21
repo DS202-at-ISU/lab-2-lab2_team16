@@ -227,3 +227,48 @@ ggplot(ames, aes(x = `Sale Price`)) +
 
 There is a lot of variance and a few outliners as there is large cluster
 near the y axis and a few outliers as you move right.
+
+**Question 4)**
+
+**pick a variable that might be related to the main variable.**
+
+- **what is the range of that variable? plot. describe the pattern.**
+
+- **what is the relationship to the main variable? plot a scatterplot,
+  boxplot or facetted barcharts (dependening on the types of variables
+  involved). Describe overall pattern, does this variable describe any
+  oddities discovered in 3? Identify/follow-up on any oddities.**
+
+**Cassie Bedrooms:**
+
+``` r
+max(ames$`Bedrooms`,na.rm=TRUE)-min(ames$`Bedrooms`,na.rm=TRUE)
+```
+
+    ## [1] 10
+
+``` r
+max(ames$`Bedrooms`,na.rm=TRUE)
+```
+
+    ## [1] 10
+
+``` r
+min(ames$`Bedrooms`,na.rm=TRUE)
+```
+
+    ## [1] 0
+
+The range of Bedrooms is 10.
+
+``` r
+ggplot(data = ames, aes(x = factor(`Bedrooms`) , y = `Sale Price`)) +
+  geom_boxplot()
+```
+
+![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+
+This box-plot shows that there is not a large correlation between number
+of bedrooms and sale price. It would likely be better if it was included
+as a variable in a multiple linear regression to identify how exactly it
+impacts (or doesn’t) impact sale price.
