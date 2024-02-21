@@ -224,3 +224,64 @@ ggplot(ames, aes(x = `Sale Price`)) +
     ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
 ![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+
+There is a lot of variance and a few outliners as there is large cluster
+near the y axis and a few outliers as you move right.
+
+``` r
+#Ryan Riebesehl- I chose Acres
+remotes::install_github('heike/classdata')
+```
+
+    ## Skipping install of 'classdata' from a github remote, the SHA1 (1faa8961) has not changed since last install.
+    ##   Use `force = TRUE` to force installation
+
+``` r
+library(classdata)
+head(ames)
+```
+
+    ## # A tibble: 6 × 16
+    ##   `Parcel ID` Address      Style Occupancy `Sale Date` `Sale Price` `Multi Sale`
+    ##   <chr>       <chr>        <fct> <fct>     <date>             <dbl> <chr>       
+    ## 1 0903202160  1024 RIDGEW… 1 1/… Single-F… 2022-08-12        181900 <NA>        
+    ## 2 0907428215  4503 TWAIN … 1 St… Condomin… 2022-08-04        127100 <NA>        
+    ## 3 0909428070  2030 MCCART… 1 St… Single-F… 2022-08-15             0 <NA>        
+    ## 4 0923203160  3404 EMERAL… 1 St… Townhouse 2022-08-09        245000 <NA>        
+    ## 5 0520440010  4507 EVERES… <NA>  <NA>      2022-08-03        449664 <NA>        
+    ## 6 0907275030  4512 HEMING… 2 St… Single-F… 2022-08-16        368000 <NA>        
+    ## # ℹ 9 more variables: YearBuilt <dbl>, Acres <dbl>,
+    ## #   `TotalLivingArea (sf)` <dbl>, Bedrooms <dbl>,
+    ## #   `FinishedBsmtArea (sf)` <dbl>, `LotArea(sf)` <dbl>, AC <chr>,
+    ## #   FirePlace <chr>, Neighborhood <fct>
+
+``` r
+#Ryan Riebesehl- I chose Acres:
+library(ggplot2)
+ames1 <- na.omit(ames)
+Acres <- ames1$Acres
+SalePrice <- ames1$`Sale Price`
+print(range(Acres))
+```
+
+    ## [1] 0.096 1.222
+
+``` r
+ggplot(ames1, aes(x = Acres, y = SalePrice)) +
+  geom_point(size = 3, alpha = 0.8) +
+  labs(title = "Scatterplot of Sale Price against Related Variable",
+       x = "Acres",
+       y = "Sale Price",
+       color = "Category") +
+  theme_minimal()
+```
+
+![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+
+^Based on the scatter plot to see differences between Acres and Sales
+Price, you can see a slight trend that houses with small acres have an
+expensive sales price. This is the same for houses with large amounts
+Acres. This is probably because houses near the downtown city of Ames
+tend to be more expensive. Additionally, large acres of land will
+usually cost more money. There are some oddities in the graph as some
+price have not been updated.

@@ -27,15 +27,22 @@ library(classdata)
 ```{r}
 head(ames)
 ```
-str(ames)
+
 There are 16 variables in the Ames data set. Some variables are categorical and others are numerical.
 
+```{r}
+str(ames)
+```
+
+  
+```{r}
 library(ggplot2)
 ames
 View(ames)
 library(tidyverse)
 
 str(ames)
+
 
 ames_filtered <- ames %>%
   filter(YearBuilt >= 1880 & YearBuilt <= 2022)
@@ -47,6 +54,168 @@ ggplot(ames_filtered, aes(x = YearBuilt, y = `Sale Price`)) +
   labs(title = "Histogram: Sale Price vs Year Built",
        x = "Year Built",
        y = "Sale Price") +
+```
+
+
+```{r}
+theme_minimal()
+```
+  
+
+Parcel ID: Character
+
+Address: Character
+
+Style: Factor
+
+Occupancy: Factor
+
+Sale Date: Date
+
+Sale Price: Double
+
+Multi Sale: Character
+
+Year Built: Double
+
+Acres: Double
+
+Total Living Area: Double
+
+Bedrooms: Double
+
+Finished Basement Area: Double
+
+Lot Area: Double
+
+AC: Character
+
+Fireplace: Character
+
+Neighborhood: Factor
+
+**Meaning of Variable:**
+
+Parcel ID:
+
+:   character with ID.
+
+Address:
+
+:   property address in Ames, IA.
+
+Style:
+
+:   factor variable detailing the type of housing.
+
+Occupancy:
+
+:   factor variable of type of housing.
+
+Sale Date:
+
+:   date of sale.
+
+Sale Price:
+
+:   sales price (in US dollar).
+
+Multi Sale:
+
+:   logical value: was this sale part of a package?
+
+YearBuilt:
+
+:   integer value: year in which the house was built.
+
+Acres:
+
+:   acres of the lot.
+
+TotalLivingArea (sf):
+
+:   total living area in square feet.
+
+Bedrooms:
+
+:   number of bedrooms.
+
+FinishedBsmtArea (sf):
+
+:   total area of the finished basement in square feet.
+
+LotArea(sf):
+
+:   total lot area in square feet.
+
+AC:
+
+:   logical value: does the property have an AC?
+
+FirePlace:
+
+:   logical value: does the property have an fireplace?
+
+Neighborhood:
+
+:   factor variable - levels indicate neighborhood area in Ames.
+
+**Expected Range:**
+
+This can be found in the summary output by subtracting the minimum from the maximum values for each applicable variable (some variable types do not have a range) in the summary output.
+
+**Question 2)**
+
+**is there a variable of special interest or focus?**
+
+The special variable of focus is the sale price of the house/condo/apartment in USD.
+
+**Question 3)**
+
+**start the exploration with the main variable:**
+
+-   **what is the range of the variable? draw a histogram for a numeric variable or a bar chart, if the variable is categorical. what is the general pattern? is there anything odd?**
+
+-   **follow-up on oddities: see 4**
+
+```{r}
+max(ames$`Sale Price`,na.rm=TRUE)-min(ames$`Sale Price`,na.rm=TRUE)
+```
+
+The range for the sale price is 20500000 USD.
+
+```{r}
+ggplot(ames, aes(x = `Sale Price`)) + 
+  geom_histogram() +
+  ggtitle("Sale Price")
+```
+
+There is a lot of variance and a few outliners as there is large cluster near the y axis and a few outliers as you move right.
+
+```{r}
+#Ryan Riebesehl- I chose Acres
+remotes::install_github('heike/classdata')
+library(classdata)
+head(ames)
+```
+
+```{r}
+
+#Ryan Riebesehl- I chose Acres:
+library(ggplot2)
+ames1 <- na.omit(ames)
+Acres <- ames1$Acres
+SalePrice <- ames1$`Sale Price`
+print(range(Acres))
+
+ggplot(ames1, aes(x = Acres, y = SalePrice)) +
+  geom_point(size = 3, alpha = 0.8) +
+  labs(title = "Scatterplot of Sale Price against Related Variable",
+       x = "Acres",
+       y = "Sale Price",
+       color = "Category") +
   theme_minimal()
-  
-  
+```
+
+\^Based on the scatter plot to see differences between Acres and Sales Price, you can see a slight trend that houses with small acres have an expensive sales price. This is the same for houses with large amounts Acres. This is probably because houses near the downtown city of Ames tend to be more expensive. Additionally, large acres of land will usually cost more money. There are some oddities in the graph as some price have not been updated.
+
