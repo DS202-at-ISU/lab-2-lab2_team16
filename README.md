@@ -257,6 +257,7 @@ head(ames)
 
 ``` r
 #Ryan Riebesehl- I chose Acres:
+
 library(ggplot2)
 ames1 <- na.omit(ames)
 Acres <- ames1$Acres
@@ -284,4 +285,4 @@ expensive sales price. This is the same for houses with large amounts
 Acres. This is probably because houses near the downtown city of Ames
 tend to be more expensive. Additionally, large acres of land will
 usually cost more money. There are some oddities in the graph as some
-price have not been updated.
+price have not been updated. -Ryan Riebesehl
