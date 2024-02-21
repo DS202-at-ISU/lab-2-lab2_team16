@@ -197,3 +197,9 @@ logical value: does the property have an fireplace?
 
 Neighborhood:  
 factor variable - levels indicate neighborhood area in Ames.
+
+**Expected Range:**
+
+This can be found in the summary output by subtracting the minimum from
+the maximum values for each applicable variable (some variable types do
+not have a range) in the summary output.
